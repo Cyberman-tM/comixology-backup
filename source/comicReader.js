@@ -660,7 +660,8 @@ function loadComic(callback, step, metaData) {
 
 	port.send({
 		what: "new_zip",
-		user: getUsername()
+		user: getUsername(),
+		metaXML: metaData.toString("CIX")
 	}, function(result) {
 		if(result.error) // zip creation failed: stop backup immediately.
 			return callback(new Error("Zip creation failed."));
