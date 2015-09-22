@@ -152,6 +152,7 @@ Download.prototype = {
 			text: clone.querySelector("span.text." + randomId),
 			progressBG: "linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) {X}%, rgba(0,0,0,0) {X}%, rgba(0,0,0,0) 100%), " + buttonComputedStyle.background
 		});
+
 		if(settings.selectors) {
 			clone.addEventListener("click", function() {
 				this[this.cancelable ? "cancel" : "start"]();
@@ -239,7 +240,9 @@ Download.prototype = {
 				else {
 					callback({
 						download: true,
-						metaData: this.metaData.toString()
+						//I don't know how to get the OBJECT across, so I'm sending JSON and XML metadata
+						metaData: this.metaData.toString(),
+						metaXML: this.metaData.toString("CIX")
 					});
 					this.showProgress(0);
 				}
