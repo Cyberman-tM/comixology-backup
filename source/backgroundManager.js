@@ -104,6 +104,11 @@ getSettings(function() {
 							port.zip = writer;
 							port.user = request.user;
 							writer.add(".meta.asc", new zip.TextReader("This is a ComiXology backup.\nPlease do not distribute it.\nBackup created by " + (request.user || "[UNKNOWN USER]")));
+							
+							//This ruins the .meta.asc and comicinfo.xml for some reason - why?
+							//Add ComicRack Metadata
+							//writer.add("ComicInfo.xml", new zip.TextReader(request.metaXML));
+							
 							callback({
 								what: "new_zip_created",
 								error: false
